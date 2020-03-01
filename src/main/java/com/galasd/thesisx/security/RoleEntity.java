@@ -10,6 +10,6 @@ public class RoleEntity {
     }
 
     public static String[] getAllRoles() {
-        return new String[] { COMMON, ADMIN };
+        return new String[]{COMMON, ADMIN};
     }
 }

@@ -22,16 +22,17 @@ public final class SecurityUtils {
     private SecurityUtils() {
         // Util methods only
     }
+
     /**
      * Gets the user name of the currently signed in user.
      *
      * @return the user name of the current user or <code>null</code> if the user
-     *         has not signed in
+     * has not signed in
      */
     public static String getUsername() {
         SecurityContext context = SecurityContextHolder.getContext();
         Object principal = context.getAuthentication().getPrincipal();
-        if(principal instanceof UserDetails) {
+        if (principal instanceof UserDetails) {
             UserDetails userDetails = (UserDetails) context.getAuthentication().getPrincipal();
             return userDetails.getUsername();
         }
@@ -48,25 +49,20 @@ public final class SecurityUtils {
      */
     public static boolean isAccessGranted(Class<?> securedClass) {
         final boolean publicView = LoginView.class.equals(securedClass);
-
         // Always allow access to public views
         if (publicView) {
             return true;
         }
-
         Authentication userAuthentication = SecurityContextHolder.getContext().getAuthentication();
-
         // All other views require authentication
         if (!isUserLoggedIn(userAuthentication)) {
             return false;
         }
-
         // Allow if no roles are required.
         Secured secured = AnnotationUtils.findAnnotation(securedClass, Secured.class);
         if (secured == null) {
             return true;
         }
-
         List<String> allowedRoles = Arrays.asList(secured.value());
         return userAuthentication.getAuthorities().stream().map(GrantedAuthority::getAuthority)
                 .anyMatch(allowedRoles::contains);
@@ -91,8 +87,7 @@ public final class SecurityUtils {
      * checking if the request parameter is present and if its value is consistent
      * with any of the request types know.
      *
-     * @param request
-     *            {@link HttpServletRequest}
+     * @param request {@link HttpServletRequest}
      * @return true if is an internal framework request. False otherwise.
      */
     static boolean isFrameworkInternalRequest(HttpServletRequest request) {

@@ -12,7 +12,7 @@ import java.util.Collections;
 
 /**
  * Implements the {@link UserDetailsService}.
- *
+ * <p>
  * This implementation searches for {@link UserEntity} entities by the e-mail address
  * supplied in the login screen.
  */
@@ -28,13 +28,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     /**
-     *
      * Recovers the {@link UserEntity} from the database using the e-mail address supplied
      * in the login screen. If the user is found, returns a
      * {@link org.springframework.security.core.userdetails.User}.
      *
      * @param username User's e-mail address
-     *
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -1,18 +1,13 @@
 package com.galasd.thesisx.view;
 
 import com.galasd.thesisx.security.SecurityUtils;
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.login.LoginI18n;
 import com.vaadin.flow.component.login.LoginOverlay;
 import com.vaadin.flow.router.*;
-import com.vaadin.flow.server.VaadinSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Optional;
-
 @Route
-public class LoginView extends LoginOverlay implements
-        AfterNavigationObserver, BeforeEnterObserver {
+public class LoginView extends LoginOverlay implements AfterNavigationObserver, BeforeEnterObserver {
 
     @Autowired
     public LoginView() {

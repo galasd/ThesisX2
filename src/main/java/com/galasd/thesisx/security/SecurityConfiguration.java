@@ -21,7 +21,6 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
  * <li>Restrict access to the application, allowing only logged in users,</li>
  * <li>Set up the login form,</li>
  * <li>Configures the {@link UserDetailsServiceImpl}.</li>
-
  */
 @EnableWebSecurity
 @Configuration

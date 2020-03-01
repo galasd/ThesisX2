@@ -1,9 +1,12 @@
 package com.galasd.thesisx.security;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.validation.constraints.*;
 
-@Entity(name="UserInfo")
+@Entity(name = "UserInfo")
 public class UserEntity extends AbstractEntity {
 
     @NotEmpty
@@ -32,7 +35,7 @@ public class UserEntity extends AbstractEntity {
 
     @PrePersist
     @PreUpdate
-    private void prepareData(){
+    private void prepareData() {
         this.email = email == null ? null : email.toLowerCase();
     }
 
