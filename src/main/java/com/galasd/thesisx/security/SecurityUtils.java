@@ -1,4 +1,4 @@
-package com.galasd.thesisx.utils;
+package com.galasd.thesisx.security;
 
 import com.galasd.thesisx.view.LoginView;
 import com.vaadin.flow.server.ServletHelper;
@@ -17,17 +17,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-/**
- * SecurityUtils takes care of all such static operations that have to do with
- * security and querying rights from different beans of the UI.
- *
- */
 public final class SecurityUtils {
 
     private SecurityUtils() {
         // Util methods only
     }
-
     /**
      * Gets the user name of the currently signed in user.
      *
@@ -54,12 +48,14 @@ public final class SecurityUtils {
      */
     public static boolean isAccessGranted(Class<?> securedClass) {
         final boolean publicView = LoginView.class.equals(securedClass);
+
         // Always allow access to public views
         if (publicView) {
             return true;
         }
 
         Authentication userAuthentication = SecurityContextHolder.getContext().getAuthentication();
+
         // All other views require authentication
         if (!isUserLoggedIn(userAuthentication)) {
             return false;
