@@ -50,7 +50,7 @@ public class MapboxEntity implements Serializable {
         this.latitude = placeLatitude;
     }
 
-    public Double getLongitde(){
+    public Double getLongitude(){
         return longitude;
     }
 
